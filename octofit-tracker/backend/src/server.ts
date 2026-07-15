@@ -1,7 +1,6 @@
 import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
-import { getApiBaseUrl } from './api.js';
 import {
   ActivityModel,
   LeaderboardEntryModel,
@@ -13,6 +12,16 @@ import {
 const app = express();
 const port = Number(process.env.PORT) || 8000;
 const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/octofit_db';
+
+function getApiBaseUrl(): string {
+  const codespaceName = process.env.CODESPACE_NAME;
+
+  if (codespaceName) {
+    return `https://${codespaceName}-8000.app.github.dev`;
+  }
+
+  return 'http://localhost:8000';
+}
 
 app.use(cors());
 app.use(express.json());
