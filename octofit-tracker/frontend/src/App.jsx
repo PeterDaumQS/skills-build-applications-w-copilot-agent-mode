@@ -1,3 +1,4 @@
+import React from 'react';
 import { NavLink, Route, Routes } from 'react-router-dom';
 import Activities from './components/Activities';
 import Leaderboard from './components/Leaderboard';
